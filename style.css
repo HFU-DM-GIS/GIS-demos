@@ -1,0 +1,37 @@
+/* this is my main CSS file for experiments */
+html {
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#today {
+    border: 3px solid rgb(55, 49, 49);
+    padding: 8px;
+}
+
+div {
+    border: 1px solid gray;
+    padding: 8px;
+}
+
+h1 {
+    height: 10%;
+    font: bolder;
+    color: tomato;
+    padding-left: 10px;
+    /*position: fixed;*/
+}
+
+h3 {
+    height: 15px;
+    font-size: 90%;
+}
+
+p {
+    padding-left: 20px;
+    height: 20px;
+}
+
+p.hints {
+    font-style: italic;
+    font-size: smaller;
+    padding-left: 50px;
+}

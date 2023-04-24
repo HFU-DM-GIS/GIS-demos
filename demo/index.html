@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo JavaScript function calls</title>
+    <link rel="stylesheet" href="prism.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'tab1')">Non-blocking demo</button>
+        <button class="tablinks" onclick="openTab(event, 'tab2')">Sleep demo</button>
+        <button class="tablinks" onclick="openTab(event, 'tab3')">Floating point demo</button>
+        <button class="tablinks" onclick="openTab(event, 'tab4')">Debugging demo</button>
+    </div>
+    <div id="tab1" class="tabcontent">
+        <p><pre><code class="language-javascript">
+            function runCode() {
+
+                const output = document.getElementById("output");
+            
+                output.innerHTML = "Start of the function code";
+            
+                setTimeout(function() {
+                output.innerHTML += "&lt;br&gt;Timeout 1 (300ms) executed";
+                }, 300);
+            
+                setTimeout(function() {
+                output.innerHTML += "&lt;br&gt;Timeout 2 (100ms) executed";
+                }, 100);
+            
+                output.innerHTML += "&lt;br&gt;End of the function code";
+            }
+        </code></pre>
+        <p id="output">Click the button to execute the code above</p>
+        <button onclick="runCode()">Run Code</button>
+        <br /></p>
+    </div>
+    <div id="tab2" class="tabcontent">
+        <p><pre><code class="language-javascript">
+            function sleep(ms) {
+                return new Promise((resolve) => setTimeout(resolve, ms)).then(() => {
+                    const output = document.getElementById("output2");
+                    output.innerHTML += "&lt;br&gt;Sleeping for "+ ms +"ms";
+                });
+              }
+        
+              async function showHowToWait() {
+                const output = document.getElementById("output2");
+                output.innerHTML += "&lt;br&gt;Start";
+                await sleep(200);
+                output.innerHTML += "&lt;br&gt;End";
+              }
+        </code></pre>
+        <p id="output2">Click the button to execute the code above</p>
+        <button onclick="showHowToWait()">Run Code</button></p>
+    </div>
+    <div id="tab3" class="tabcontent">
+        <p><pre><code class="language-javascript">
+            function floatingPointDemo() {
+
+                const output = document.getElementById("output3");
+            
+                let x = 0.1 + 0.2;
+                let isEqual = x == 0.3;
+                output.innerHTML += "<br>0.1 + 0.2 == 0.3 is " + isEqual
+            }
+        </code></pre>
+        <script>
+            function floatingPointDemo() {
+
+                const output = document.getElementById("output3");
+            
+                let x = 0.1 + 0.2;
+                let isEqual = x == 0.3;
+                output.innerHTML += "<br>0.1 + 0.2 == 0.3 is " + isEqual
+            }
+          </script>
+          <p id="output3">Click the button to execute the code above</p>
+          <button onclick="floatingPointDemo()">Run Code</button></p>
+    </div>
+    <div id="tab4" class="tabcontent">
+        <h6>Example taken from <a href="https://stackify.com/javascript-logging-basic-tips/">Stackify</a></h6>
+        <p><pre><code class="language-javascript">
+            function consoleDebugDemo() {
+                console.time("Contrived example"); // Start the timer!
+                try {
+                    console.group("TRY BLOCK ACTIONS:"); // Create a console grouping
+                    console.log("Trying to reach server...")
+                    console.warn("It's taking awhile...."); // Use the console warn utility so we don't miss it in the console
+                    console.log("Still trying...");
+                    console.groupEnd(); // Close the "TRY BLOCK ACTIONS" grouping
+                    throw new Error("Can't reach server, sorry!"); // Throw an error to be caught in the catch block
+                } catch(e) {
+                    console.error(e.message); // Log the error thrown from the try block
+                } finally { // Block of code to execute regardless of errors
+                    console.group("FINALLY BLOCK ACTIONS:"); // Create another console grouping
+                    setTimeout(function() { // Arbitrarily delay code execution for the sake of timing
+                        console.log("Let's run some code independent of the server response:");
+                        coolFunction(); // Call external function
+                        console.log("Finally done with the example!");
+                        console.groupEnd(); // Close the "FINALLY BLOCK ACTIONS" grouping
+                        console.timeEnd("Contrived example"); // Stop timing the code and log the time taken to execute
+                    }, 900);
+                }
+            }
+            function coolFunction() {
+                console.log("Hello from coolFunction");
+            }
+        </code></pre>
+        <script>
+            function consoleDebugDemo() {
+                console.time("Contrived example"); // Start the timer!
+                try {
+                    console.group("TRY BLOCK ACTIONS:"); // Create a console grouping
+                    console.log("Trying to reach server...")
+                    console.warn("It's taking awhile...."); // Use the console warn utility so we don't miss it in the console
+                    console.log("Still trying...");
+                    console.groupEnd(); // Close the "TRY BLOCK ACTIONS" grouping
+                    throw new Error("Can't reach server, sorry!"); // Throw an error to be caught in the catch block
+                } catch(e) {
+                    console.error(e.message); // Log the error thrown from the try block
+                } finally { // Block of code to execute regardless of errors
+                    console.group("FINALLY BLOCK ACTIONS:"); // Create another console grouping
+                    setTimeout(function() { // Arbitrarily delay code execution for the sake of timing
+                        console.log("Let's run some code independent of the server response:");
+                        coolFunction(); // Call external function
+                        console.log("Finally done with the example!");
+                        console.groupEnd(); // Close the "FINALLY BLOCK ACTIONS" grouping
+                        console.timeEnd("Contrived example"); // Stop timing the code and log the time taken to execute
+                    }, 900);
+                }
+            }
+            function coolFunction() {
+                console.log("Hello from coolFunction");
+            }
+          </script>
+          <p id="output4">Click the button to execute the code above</p>
+          <button onclick="consoleDebugDemo()">Run Code</button></p>
+      </div>
+    <hr />
+    
+    <script src="prism.js"></script>
+    <script src="script.js"></script>
+    <script>
+      const code = document.getElementById("code");
+
+      function runCode() {
+        const output = document.getElementById("output");
+
+        output.innerHTML = "Start of the function code";
+
+        setTimeout(function () {
+          output.innerHTML += "<br>Timeout 1 (300ms) executed";
+        }, 300);
+
+        setTimeout(function () {
+          output.innerHTML += "<br>Timeout 2 (100ms) executed";
+        }, 100);
+
+        output.innerHTML += "<br>End of the function code";
+      }
+
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms)).then(() => {
+            const output = document.getElementById("output2");
+            output.innerHTML += "<br>Sleeping for "+ ms +"ms";
+        });
+      }
+
+      async function showHowToWait() {
+        const output = document.getElementById("output2");
+        output.innerHTML += "<br>Start";
+        await sleep(200);
+        output.innerHTML += "<br>End";
+      }
+    </script>
+  </body>
+</html>
